@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <form action="">
+        <label for="cep">CEP</label><br>
+        <input type="text" id="cep"><br><br>
+
+        <label for="bairro">Bairro</label><br>
+        <input type="text" id="bairro"><br><br>
+
+        <label for="ddd">DDD</label><br>
+        <input type="text" id="ddd"><br><br>
+
+        <label for="ibge">IBGE</label><br>
+        <input type="text" id="ibge"><br><br>
+
+        <label for="localidade">LOCALIDADE</label><br>
+        <input type="text" id="localidade"><br><br>
+
+        <label for="logradouro">LOGRADOURO</label><br>
+        <input type="text" id="logradouro"><br><br>
+
+        <label for="uf">UF</label><br>
+        <input type="text" id="uf"><br><br>
+
+        <label for="siafi">SIAFI</label><br>
+        <input type="text" id="siafi"><br><br>           
+
+
+        <input onclick="enviar()" type="button" value="enviar">
+
+    </form>
+
+    <script>
+
+        const cep = document.getElementById("cep")
+        cep.addEventListener("blur", (e) =>{
+
+            let Cep = document.getElementById("cep").value;
+
+            let search = cep.value.replace("-", "")
+            console.log(search);
+            fetch(`https://viacep.com.br/ws/${search}/json/`).then((response) => {
+                response.json().then(data => {
+                    console.log(data);
+                    document.getElementById("bairro").value = data.bairro;
+                    document.getElementById("ddd").value = data.ddd;
+                    document.getElementById("ibge").value = data.ibge;
+                    document.getElementById("localidade").value = data.localidade;
+                    document.getElementById("logradouro").value = data.logradouro;
+                    document.getElementById("uf").value = data.uf;
+                    document.getElementById("siafi").value = data.siafi;
+                })
+            })
+        })
+
+
+        function enviar(){
+            let bairro = document.getElementById("bairro").value = data.bairro;
+            let ddd = document.getElementById("ddd").value = data.ddd;
+            let ibge = document.getElementById("ibge").value = data.ibge;
+            let localidade = document.getElementById("localidade").value = data.localidade;
+            let logradouro = document.getElementById("logradouro").value = data.logradouro;
+            let uf = document.getElementById("uf").value = data.uf;
+            let siafi = document.getElementById("siafi").value = data.siafi;
+        
+            let json = {
+                "bairro": bairro,
+                "ddd": ddd,
+                "ibge": ibge,
+                "localidade": localidade,
+                "logradouro": logradouro,
+                "uf": uf,
+                "siafi": siafi
+            }
+            console.log(json)
+        };
+    
+    </script>
+    -->
+
+</body>
+</html>
